@@ -1,0 +1,19 @@
+---
+- name: restart dhcpcd
+  service:
+    name: dhcpcd
+    state: restarted
+
+- name: restart hostapd
+  service:
+    name: hostapd
+    state: restarted
+
+- name: restart systemd-networkd
+  service:
+    name: systemd-networkd
+    state: restarted
+
+- name: reboot host
+  reboot:
+    reboot_timeout: 120

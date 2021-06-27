@@ -1,0 +1,15 @@
+---
+- name: Create configuration file for hostapd
+  template:
+    src: hostapd.conf.j2
+    dest: "/etc/hostapd/hostapd.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart hostapd
+
+- name: Ensure hostapd is started and enabled on boot
+  service:
+    name: hostapd
+    state: started
+    enabled: true

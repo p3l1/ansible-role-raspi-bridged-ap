@@ -1,0 +1,13 @@
+---
+- name: "Disable DHCP on {{ interface_ethernet_name }} and {{ interface_wifi_name }}"
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    line: "denyinterfaces {{ interface_wifi_name }} {{ interface_ethernet_name }}"
+    insertbefore: BOF
+  notify: restart dhcpd
+
+- name: "Enable DHCP on {{ interface_bridge_name }}"
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    line: "interface {{ interface_bridge_name }}"
+  notify: restart dhcpd

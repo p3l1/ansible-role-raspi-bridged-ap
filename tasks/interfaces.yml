@@ -1,0 +1,24 @@
+---
+- name: Create configuration file for bridge interface
+  template:
+    src: interface.netdev.j2
+    dest: "/etc/systemd/network/bridge-{{ interface_bridge_name }}.netdev"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart systemd-networkd
+
+- name: Create configuration file for bridge configuration
+  template:
+    src: bridge.network.j2
+    dest: "/etc/systemd/network/{{ interface_bridge_name }}-member-{{ interface_ethernet_name }}.network"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart systemd-networkd
+
+- name: Ensure systemd-networkd is started and enabled on boot
+  service:
+    name: systemd-networkd
+    enabled: true
+    state: started

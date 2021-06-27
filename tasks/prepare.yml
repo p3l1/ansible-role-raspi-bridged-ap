@@ -1,0 +1,17 @@
+---
+- name: Install hostapd
+  apt:
+    name: hostapd
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Check if WiFi is currently blocked
+  command: rfkill -n -o SOFT list 0
+  changed_when: false
+  register: wifi_status
+
+- name: Enable WiFi on Raspberry Pi
+  command: "rfkill unblock wlan"
+  become: true
+  changed_when: "wifi_status.stdout == 'blocked'"
