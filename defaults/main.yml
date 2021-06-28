@@ -11,3 +11,5 @@ hostapd_passphrase: your-secret-password
 hostapd_key_mgmt: WPA-PSK
 hostapd_wpa_pairwise: TKIP
 hostapd_rsn_pairwise: CCMP
+
+disable_internal_wifi: true

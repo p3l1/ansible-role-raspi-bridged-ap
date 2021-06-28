@@ -1,5 +1,6 @@
 ---
 - include: prepare.yml
+- include: internal-wifi.yml
 - include: interfaces.yml
 - include: dhcpcd-config.yml
 - include: hostapd-config.yml

@@ -1,0 +1,16 @@
+---
+- name: "Enable internal WiFi chip"
+  ansible.builtin.replace:
+    path: /boot/config.txt
+    regexp: 'dtoverlay=disable-wifi'
+    replace: ''
+  notify: reboot host
+  when: not disable_internal_wifi
+
+- name: "Disable internal WiFi chip"
+  lineinfile:
+    path: /boot/config.txt
+    line: "dtoverlay=disable-wifi"
+    insertbefore: BOF
+  notify: reboot host
+  when: disable_internal_wifi
