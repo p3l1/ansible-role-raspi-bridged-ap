@@ -44,7 +44,16 @@ hostapd_channel: 8
 
 [More information](https://en.wikipedia.org/wiki/List_of_WLAN_channels#2.4_GHz_(802.11b/g/n/ax))
 
+---
+
+`disable_internal_wifi: false`
+
+When using an external WiFi-Adapter it may be useful or needed to disable the internal WiFi chip of the Raspberry Pi.
 
 # About
 
 This Ansible Role is based on the official [tutorial](https://www.raspberrypi.org/documentation/configuration/wireless/access-point-bridged.md) from the Raspberry Pi Documentation
+
+# Licence
+
+MIT
